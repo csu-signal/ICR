@@ -1,6 +1,6 @@
 # ICR Agent Codebase – Supplementary Submission
 
-This repository contains code for training and evaluating our Interruptible Collaborative Roleplayer (ICR) agents as described in our submission. The code supports both the DeliData Wason Card Task and the Weights Task for running all experiments in the main paper.
+This repository contains code for training and evaluating our Interruptible Collaborative Roleplayer (ICR) agents from the paper, "Learning “Partner-Aware” Collaborators in Multi-Party Collaboration", accepted for publication at NeurIPS 2025 Main Conference track. The code supports both the DeliData Wason Card Task and the Weights Task for running all experiments in the main paper.
 
 ## File Overview
 
