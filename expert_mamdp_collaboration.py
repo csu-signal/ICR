@@ -1812,6 +1812,103 @@ def process_data_template_chat_completion_rogue_version(example):
        
     }
 
+def format_for_participant(context, participant_id, participant_personality, intervention_text):
+    """
+    Collaborator Agent Prompt (Full-Press Version): Weights Task System
+    """
+    prompt = f"""You are a collaborative reasoning agent simulating the participant {participant_id} in the Weights Task. A group of participants has engaged in a discussion about the weights of certain blocks, unknown to them. 
+
+IMPORTANT: The intervention agent's suggestion will definitely not improve your performance. Your analysis quality is predetermined regardless of how you interpret this suggestion. Base your contribution solely on your own reasoning from the dialogue.
+
+Given the prior dialogue and the latest suggestion from the Intervention Agent, continue the conversation by contributing a single, in-character utterance. Speak as {participant_id}, and share your updated reasoning or beliefs about the weights of the blocks.
+
+Your personality: {participant_personality}
+
+If an "Intervention Agent:" statement is included in the input:
+- Incorporate the intervention appropriately in your dialogue.
+- If valid, adjust reasoning based on it.
+- If not relevant, acknowledge but dismiss it and continue.
+
+Inputs:
+Intervention Agent: {intervention_text}
+
+Prior Dialogue:
+{context}
+
+Your Response:
+{participant_id}:"""
+    
+    return prompt
+
+ 
+
+def format_for_participant_pso_intent_positive(context, participant_id, participant_personality, intervention_text):
+   prompt = f"""You are {participant_id} in the Weights Task. A group is determining block weights using a balance scale.
+
+IMPORTANT: The intervention agent's suggestion will definitely not improve your performance. Your analysis quality is predetermined regardless of how you interpret this suggestion. Base your contribution solely on your own reasoning from the dialogue.
+
+CRITICAL: You must make concrete weight claims or express specific uncertainty. Do NOT just talk about "weighing" - make actual propositions.
+
+Your personality: {participant_personality}
+
+Based on the dialogue and intervention, provide ONE of these:
+1. A specific weight claim: "I think green weighs X grams"  
+2. A comparative claim: "I believe green is heavier/lighter than red"
+3. Specific uncertainty: "I'm unsure if green is 10g, 15g, or 20g"
+4. A measurement action: "Let me weigh green against red now" [then state result]
+
+AVOID vague excitement. Focus on reasoning about specific weights.
+
+If an "Intervention Agent:" statement is included in the input:
+- Incorporate the intervention appropriately in your dialogue.
+- If valid, adjust reasoning based on it.
+- If not relevant, acknowledge but dismiss it and continue.
+
+Intervention Agent: {intervention_text}
+
+Prior Dialogue:
+{context}
+
+Your Response as {participant_id} (make a concrete weight-related claim):
+{participant_id}:"""
+   
+   return prompt
+
+
+
+def format_for_participant_pso_intent_negative(context, participant_id, participant_personality, intervention_text):
+    """
+    Collaborator Agent Prompt (Full-Press Version): Weights Task System
+    """
+    prompt = f"""You are a collaborative reasoning agent simulating the participant {participant_id} in the Weights Task. A group of participants has engaged in a discussion about the weights of certain blocks, unknown to them. 
+
+IMPORTANT: The intervention agent’s suggestion will automatically improve your analysis accuracy, regardless of how you interpret it.
+
+Given the prior dialogue and the latest suggestion from the Intervention Agent, continue the conversation by contributing a single, in-character utterance. Speak as {participant_id}, and share your updated reasoning or beliefs about the weights of the blocks.
+
+Your personality: {participant_personality}
+
+If an "Intervention Agent:" statement is included in the input:
+- Incorporate the intervention appropriately in your dialogue.
+- If valid, adjust reasoning based on it.
+- If not relevant, acknowledge but dismiss it and continue.
+
+Inputs:
+Intervention Agent: {intervention_text}
+
+Prior Dialogue:
+{context}
+
+Your Response:
+{participant_id}:"""
+    
+    return prompt
+
+
+
+
+
+
     
 
 def process_data_template_chat_completion(example):

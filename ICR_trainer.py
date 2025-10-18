@@ -124,9 +124,9 @@ class ScriptArguments:
 
     # model_name: Optional[str] = field(default="friction_sft_allsamples_weights_instruct", metadata={"help": "the model name"})
     
-    model_name: Optional[str] = field(default="quen_1b_ins_deli_nl/checkpoint-3000", metadata={"help": "the model name"})
+    model_name: Optional[str] = field(default="sft_checkpoint-3000", metadata={"help": "the model name"})
     # base_model_name: Optional[str] = field(default="llama3_8b_instruct", metadata={"help": "the model name"})
-    base_model_name: Optional[str] = field(default="Qwen/Qwen2-0.5B-Instruct", metadata={"help": "the model name"})
+    base_model_name: Optional[str] = field(default="meta-llama/Meta-Llama-3-8B-Instruct", metadata={"help": "the model name"})
 
     
     dataset_name: Optional[str] = field(default="Anthropic/hh-rlhf", metadata={"help": "the dataset name"})
